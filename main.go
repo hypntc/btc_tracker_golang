@@ -26,6 +26,7 @@ func main() {
 
 func getBtcPrice() {
 	var tooLowThreeshold float64 = 30000
+	var chatId int = YOUR_CHAT_ID
 
 	response, err := http.Get("https://api.coinbase.com/v2/prices/spot?currency=EUR")
 
@@ -48,7 +49,7 @@ func getBtcPrice() {
 			}
 
 			if amount >= tooLowThreeshold {
-				sendTelegramMessage(1877098271, string(response.Data.Amount))
+				sendTelegramMessage(chatId, string(response.Data.Amount))
 			}
 		}
 	}
