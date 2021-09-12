@@ -25,7 +25,6 @@ func main() {
 }
 
 func getBtcPrice() {
-
 	var tooLowThreeshold float64 = 30000
 
 	response, err := http.Get("https://api.coinbase.com/v2/prices/spot?currency=EUR")
@@ -39,7 +38,9 @@ func getBtcPrice() {
 		var response Response
 		err = json.Unmarshal(output, &response)
 		if err != nil {
-			fmt.Println(PrettyPrint(response))
+			// beautifier
+			s, _ := json.MarshalIndent(response, "", "\t")
+			fmt.Println(string(s))
 		} else {
 			amount, err := strconv.ParseFloat(response.Data.Amount, 64)
 			if err != nil {
@@ -51,9 +52,4 @@ func getBtcPrice() {
 			}
 		}
 	}
-}
-
-func PrettyPrint(i interface{}) string {
-	s, _ := json.MarshalIndent(i, "", "\t")
-	return string(s)
 }

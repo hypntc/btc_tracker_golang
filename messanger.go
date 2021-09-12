@@ -8,7 +8,6 @@ import (
 )
 
 func sendTelegramMessage(chatId int, text string) (string, error) {
-
 	var bot_token string = "insert your bot_token here"
 	var telegramUrl string = "https://api.telegram.org/" + bot_token + "/sendMessage"
 
